@@ -22,8 +22,13 @@ from sacrebleu import tokenize_v14_international
 
 TOK_NO_SPACE_BEFORE = {',', ';'}
 # clang.cindex.Config.set_library_path('/usr/lib/llvm-7/lib/')
-clang.cindex.Config.set_library_path('/usr/lib/llvm-11/lib/')
-clang.cindex.Config.set_library_file('libclang-11.so.1')
+# Settings for VM_ml4code
+# clang.cindex.Config.set_library_path('/usr/lib/llvm-11/lib/')
+# clang.cindex.Config.set_library_file('libclang-11.so.1')
+# Settings for Colab
+clang.cindex.Config.set_library_path('/usr/lib/llvm-6.0/lib/')
+clang.cindex.Config.set_library_file('libclang-6.0.so.1')
+
 STRINGS_AND_COMMENTS_TOKEN_KINDS = {TokenKind.LITERAL, TokenKind.COMMENT}
 logging.basicConfig(
     filename='timeout_cpp_tokenizer_examples.log', level=logging.DEBUG)

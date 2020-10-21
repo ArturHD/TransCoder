@@ -3,17 +3,17 @@
 Artur Andrzejak, October 2020
 
 
-## Setting up clang binaries and Python lib on Ubuntu
+## Setting up linux libs binaries and Python packages on Ubuntu
 
 ### Install Python package clang
 + For VM_ml4code the following works to update the "system" (non-venv) Python 3.6 interpreter: **pip install clang**
 + Note: use pip and not pip3. Updating the Python 3.6 SDK via intellijidea did not worked.
 
 
-### Install the latest llvm binaries
-See https://apt.llvm.org/ for current libclang version(s).
+### Setting up llvm binaries for hyper/vm_ml4code
 
-#### Add SW repos for linux:
+#### Add SW repos for linux (llvm)
+See https://apt.llvm.org/ for current libclang version(s).
 Execute **sudo apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-11 main"**
 
 And maybe (not needed): **sudo apt-add-repository "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-11 main"**
@@ -35,8 +35,7 @@ So we have:
 => the correct libclang file is "libclang-11.so.1".
 Use these in setting up TransCoder code.
 
-
-### Update TransCoder settings for libclang-11.so library:
+#### Update TransCoder settings for libclang-11.so library:
 In TransCoder code in 
 preprocessing/src/code_tokenizer.py, lines 24-26
 add specification of the library path and file name as follows
@@ -45,6 +44,14 @@ according to the right path and file specs in the subsec above this one):
 `	# clang.cindex.Config.set_library_path('/usr/lib/llvm-7/lib/')
 	clang.cindex.Config.set_library_path('/usr/lib/llvm-11/lib/')
 	clang.cindex.Config.set_library_file('libclang-11.so.1')
+`
+
+### Setting up llvm binaries for Colab
++ Colab has already llvm file libclang-6.0.so here: /usr/lib/llvm-6.0/lib/libclang-6.0.so.1
++ So we just need to change the settings in TC fork (in preprocessing/src/code_tokenizer.py, lines 24-26)
+`	# clang.cindex.Config.set_library_path('/usr/lib/llvm-7/lib/')
+	clang.cindex.Config.set_library_path('/usr/lib/llvm-6.0/lib/')
+	clang.cindex.Config.set_library_file('libclang-6.0.so.1')
 `
 
 
