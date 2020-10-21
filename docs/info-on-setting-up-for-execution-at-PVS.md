@@ -72,7 +72,7 @@ ln -s /projects/TransCoder/TrainedModels/ TrainedModels`
 so that the dir appears as:  
 `~/IdeaProjects/TransCoder/data/TrainedModels`
 
-### Tring translating
+### Trying translating
 According to https://github.com/ArturHD/TransCoder readme/Translate, the following should work on pre-trained models:
 
 Original:  

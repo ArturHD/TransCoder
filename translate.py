@@ -92,10 +92,10 @@ class Translator:
         assert len(reloaded['decoder'].keys()) == len(
             list(p for p, _ in self.decoder.state_dict().items()))
 
-#        self.encoder.cuda()
-#        self.decoder.cuda()
-        self.encoder.cpu()
-        self.decoder.cpu()
+        self.encoder.cuda()
+        self.decoder.cuda()
+#        self.encoder.cpu()
+#        self.decoder.cpu()
 
         self.encoder.eval()
         self.decoder.eval()
